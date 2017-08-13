@@ -252,7 +252,7 @@
             
             // Pass the AVPlayerItem to a new player
             avPlayer = [[AVPlayer alloc] initWithPlayerItem:playerItem];
-
+            [avPlayer addObserver:self forKeyPath:@"status" options:0 context:nil];
             //avPlayer = [[AVPlayer alloc] initWithURL:resourceUrl];
         }
 
@@ -260,6 +260,20 @@
 
         CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
         [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
+    }
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object
+                        change:(NSDictionary *)change context:(void *)context {    
+    if ([keyPath isEqualToString:@"status"]) {
+        if (avPlayer.status == AVPlayerStatusReadyToPlay) {
+            //playButton.enabled = YES;
+        } else if (avPlayer.status == AVPlayerStatusFailed) {
+           CDVMediaError errcode = MEDIA_ERR_NONE_ACTIVE;
+            NSString* errMsg = @"Cannot service stop request until the avPlayer is in 'AVPlayerStatusReadyToPlay' state.";
+            [self onStatus:MEDIA_ERROR mediaId:nil param:
+              [self createMediaErrorWithCode:errcode message:errMsg]];
+        }
     }
 }
 
