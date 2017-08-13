@@ -247,7 +247,7 @@
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemStalledPlaying:) name:AVPlayerItemPlaybackStalledNotification object:playerItem];
 
            // [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemStalledPlaying:) name:AVPlayerItemNewErrorLogEntryNotification object:playerItem];
-            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemStalledPlaying:) name:AVPlayerItemFailedToPlayToEndTimeNotification object:playerItem];
+            //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemStalledPlaying:) name:AVPlayerItemFailedToPlayToEndTimeNotification object:playerItem];
             
             
             // Pass the AVPlayerItem to a new player
