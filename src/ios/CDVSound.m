@@ -506,11 +506,13 @@
             [self onStatus:MEDIA_STATE mediaId:mediaId param:@(MEDIA_STOPPED)];
         } else {
             // cannot seek, wrong state
-            CDVMediaError errcode = MEDIA_ERR_NONE_ACTIVE;
-            NSString* errMsg = @"Cannot service stop request until the avPlayer is in 'AVPlayerStatusReadyToPlay' state.";
-            [self onStatus:MEDIA_ERROR mediaId:mediaId param:
-              [self createMediaErrorWithCode:errcode message:errMsg]];
+           // CDVMediaError errcode = MEDIA_ERR_NONE_ACTIVE;
+           // NSString* errMsg = @"Cannot service stop request until the avPlayer is in 'AVPlayerStatusReadyToPlay' state.";
+           // [self onStatus:MEDIA_ERROR mediaId:mediaId param:
+             // [self createMediaErrorWithCode:errcode message:errMsg]];
+            [self onStatus:MEDIA_STATE mediaId:mediaId param:@(MEDIA_STOPPED)];
         }
+        
     }
 }
 
@@ -813,6 +815,10 @@
 -(void)itemStalledPlaying:(NSNotification *) notification {
     // Will be called when playback stalls due to buffer empty
     NSLog(@"Stalled playback");
+    CDVMediaError errcode = MEDIA_ERR_NONE_ACTIVE;
+            NSString* errMsg = @"Cannot service stop request until the avPlayer is in 'AVPlayerStatusReadyToPlay' state.";
+            [self onStatus:MEDIA_ERROR mediaId:mediaId param:
+              [self createMediaErrorWithCode:errcode message:errMsg]];
 }
 
 - (void)onMemoryWarning
