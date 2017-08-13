@@ -815,6 +815,7 @@
 -(void)itemStalledPlaying:(NSNotification *) notification {
     // Will be called when playback stalls due to buffer empty
     NSLog(@"Stalled playback");
+    NSString* mediaId = self.currMediaId;
     CDVMediaError errcode = MEDIA_ERR_NONE_ACTIVE;
             NSString* errMsg = @"Cannot service stop request until the avPlayer is in 'AVPlayerStatusReadyToPlay' state.";
             [self onStatus:MEDIA_ERROR mediaId:mediaId param:
