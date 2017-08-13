@@ -579,9 +579,9 @@
                    if (isPlaying) [avPlayer play];
                }];
         } else {
-            NSString* errMsg = @"AVPlayerItem cannot service a seek request with a completion handler until its status is AVPlayerItemStatusReadyToPlay.";
-            [self onStatus:MEDIA_ERROR mediaId:mediaId param:
-              [self createAbortError:errMsg]];
+           // NSString* errMsg = @"AVPlayerItem cannot service a seek request with a completion handler until its status is AVPlayerItemStatusReadyToPlay.";
+           // [self onStatus:MEDIA_ERROR mediaId:mediaId param:
+           //   [self createAbortError:errMsg]];
         }
     }
 }
