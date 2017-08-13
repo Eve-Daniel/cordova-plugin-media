@@ -252,7 +252,7 @@
             
             // Pass the AVPlayerItem to a new player
             avPlayer = [[AVPlayer alloc] initWithPlayerItem:playerItem];
-            [avPlayer addObserver:self forKeyPath:@"status" options:0 context:self];
+            [avPlayer addObserver:self forKeyPath:@"status" options:0 context:nil];
             //avPlayer = [[AVPlayer alloc] initWithURL:resourceUrl];
         }
 
